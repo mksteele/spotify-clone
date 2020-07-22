@@ -1,8 +1,8 @@
-export interface Song {
+export interface ISong {
   id: string;
   title: string;
   artist: string;
   releaseDate: Date;
-  genre: string;
+  genres: string[];
   trackDurationInMillis: number;
 }

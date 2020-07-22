@@ -3,18 +3,21 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse } from 'tsoa';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { SongController } from './../src/controllers/songs-controller';
+import { SongController } from './../src/api/controllers/songs-controller';
 import * as express from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "IWidget": {
+    "ISong": {
         "dataType": "refObject",
         "properties": {
-            "id": { "dataType": "double", "required": true },
-            "label": { "dataType": "string", "required": true },
-            "color": { "dataType": "string", "required": true },
+            "id": { "dataType": "string", "required": true },
+            "title": { "dataType": "string", "required": true },
+            "artist": { "dataType": "string", "required": true },
+            "releaseDate": { "dataType": "datetime", "required": true },
+            "genres": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
+            "trackDurationInMillis": { "dataType": "double", "required": true },
         },
         "additionalProperties": false,
     },
@@ -50,10 +53,10 @@ export function RegisterRoutes(app: express.Express) {
             promiseHandler(controller, promise, response, next);
         });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/songs/:widgetId',
+    app.get('/songs/:songId',
         function(request: any, response: any, next: any) {
             const args = {
-                widgetId: { "in": "path", "name": "widgetId", "required": true, "dataType": "double" },
+                songId: { "in": "path", "name": "songId", "required": true, "dataType": "string" },
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -68,7 +71,7 @@ export function RegisterRoutes(app: express.Express) {
             const controller = new SongController();
 
 
-            const promise = controller.GetWidget.apply(controller, validatedArgs as any);
+            const promise = controller.listSongById.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, next);
         });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

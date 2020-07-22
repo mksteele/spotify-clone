@@ -6,23 +6,39 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"IWidget": {
+			"ISong": {
 				"properties": {
 					"id": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"artist": {
+						"type": "string"
+					},
+					"releaseDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"genres": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"trackDurationInMillis": {
 						"type": "number",
 						"format": "double"
-					},
-					"label": {
-						"type": "string"
-					},
-					"color": {
-						"type": "string"
 					}
 				},
 				"required": [
 					"id",
-					"label",
-					"color"
+					"title",
+					"artist",
+					"releaseDate",
+					"genres",
+					"trackDurationInMillis"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -51,7 +67,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IWidget"
+										"$ref": "#/components/schemas/ISong"
 									},
 									"type": "array"
 								}
@@ -60,39 +76,38 @@
 					}
 				},
 				"tags": [
-					"Widgets"
+					"Songs"
 				],
 				"security": [],
 				"parameters": []
 			}
 		},
-		"/songs/{widgetId}": {
+		"/songs/{songId}": {
 			"get": {
-				"operationId": "GetWidget",
+				"operationId": "ListSongById",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IWidget"
+									"$ref": "#/components/schemas/ISong"
 								}
 							}
 						}
 					}
 				},
 				"tags": [
-					"Widgets"
+					"Songs"
 				],
 				"security": [],
 				"parameters": [
 					{
 						"in": "path",
-						"name": "widgetId",
+						"name": "songId",
 						"required": true,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"type": "string"
 						}
 					}
 				]
