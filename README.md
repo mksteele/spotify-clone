@@ -37,19 +37,19 @@ The available URLs are:
 * First thing I went for was setting up scaffolding/infrastructure.
 * Even though GraphQL feels like it would be amazing for this use case (given the wide variety of search/views wanted), I've never used GraphQL before and thought this would not be the ideal time to start.
 * So, given that I knew I wanted to use a REST server, I decided on the express and tsoa libraries to serve the REST API.
-** For a while, generally followed this link: https://tsoa-community.github.io/docs/getting-started.html#creating-our-express-server
+    * For a while, generally followed this link: https://tsoa-community.github.io/docs/getting-started.html#creating-our-express-server
 * I decided on the following general file structure:
-** `api` for REST-specific code such as controllers and data-contract interfaces
-** `dao` to encapsulate database access
-** `domain` to contain business logic
-** `migrations` for database migrations
+    * `api` for REST-specific code such as controllers and data-contract interfaces
+    * `dao` to encapsulate database access
+    * `domain` to contain business logic
+    * `migrations` for database migrations
 
 # Features to prioritize
 
 Uhh where to begin...
 
 * Add database tables to hold songs, playlists, artists
-** I'd recommend a simple MySQL database
+    * I'd recommend a simple MySQL database
 * Authentication for the API
 * Allow upload of songs via POST /songs
 * Store song files in a GCP bucket rather than on disk
