@@ -27,10 +27,14 @@ To build the routes and compile the code:
 
 I used Postman once the REST server was running on http://localhost:3000.
 
+Link to Postman collection: https://www.getpostman.com/collections/1acbd4e60c38c74c7358
+
 The available URLs are:
 * GET http://localhost:3000/songs
 * GET http://localhost:3000/songs/<uuid-from-previous-request\>
 * GET http://localhost:3000/songs/<uuid-from-previous-request\>/stream for streamed song audio.
+
+The stream endpoint should pop up a little mp3 player - it works in either Postman or the browser. The songs should work & actually play the audio.
 
 # Thought Process
 
