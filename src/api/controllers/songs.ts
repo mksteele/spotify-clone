@@ -1,6 +1,4 @@
 import { Controller, Get, Route, Tags } from "tsoa";
-// TODO
-// import { ServerError } from "../utils/server-error";
 
 export interface IWidget {
   id: number;
