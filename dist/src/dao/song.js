@@ -20,7 +20,7 @@ const songs = [
         artist: "Drake",
         releaseDate: new Date("2015-07-31"),
         genres: ["Pop", "R&B"],
-        trackDurationInMillis: 267000,
+        trackDurationInMillis: 232000,
         filename: "Drake-HotlineBling.mp3",
     },
     {
