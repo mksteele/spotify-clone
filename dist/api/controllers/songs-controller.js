@@ -45,7 +45,6 @@ let SongController = class SongController extends tsoa_1.Controller {
     }
     listSongById(songId) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("calling getSongById");
             return songService.getSongById(songId);
         });
     }
@@ -55,7 +54,7 @@ __decorate([
     tsoa_1.Tags("Songs")
 ], SongController.prototype, "listSongs", null);
 __decorate([
-    tsoa_1.Get("/{songId}"),
+    tsoa_1.Get("{songId}"),
     tsoa_1.Tags("Songs")
 ], SongController.prototype, "listSongById", null);
 SongController = __decorate([

@@ -10,7 +10,7 @@ export class SongController extends Controller {
     return songService.getSongs();
   }
 
-  @Get("{songId}")
+  @Get("/{songId}")
   @Tags("Songs")
   public async listSongById(songId: string): Promise<ISong> {
     return songService.getSongById(songId);
