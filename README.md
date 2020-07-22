@@ -10,9 +10,8 @@ $ node --version
 
 v12.17.0
 
-Expected .env
-# Set to production when deploying to production
-NODE_ENV=development
 
-# Node.js server configuration
-SERVER_PORT=8080
+# Features to prioritize
+
+* AUTHENTICATION for the API!!!
+* Store song files in a GCP bucket rather than on disk
