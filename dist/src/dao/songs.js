@@ -9,6 +9,7 @@ const songs = [
         releaseDate: new Date("2015-07-31"),
         genres: ["Pop", "R&B"],
         trackDurationInMillis: 267000,
+        filename: "../../files/songs/Drake-HotlineBling.mp3",
     },
 ];
 function getSongs() {
@@ -16,12 +17,7 @@ function getSongs() {
 }
 exports.getSongs = getSongs;
 function getSongById(id) {
-    const song = songs.find((x) => x.id === id);
-    if (!song) {
-        // TODO: Instead of generic Error, return bad request
-        throw new Error(`no song found with id ${id}`);
-    }
-    return song;
+    return songs.find((x) => x.id === id);
 }
 exports.getSongById = getSongById;
 //# sourceMappingURL=songs.js.map

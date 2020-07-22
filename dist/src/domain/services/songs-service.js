@@ -18,20 +18,45 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.create = exports.getSongById = exports.getSongs = void 0;
+exports.create = exports.getSongFilenameById = exports.getSongById = exports.getSongs = void 0;
 const songDao = __importStar(require("../../dao/songs"));
 const utils_1 = require("../../utils");
 // A post request should not contain an id.
 // export type SongCreateParams = Pick<Song, "email" | "name" | "phoneNumbers">;
 function getSongs() {
-    return songDao.getSongs();
+    return __awaiter(this, void 0, void 0, function* () {
+        return songDao.getSongs();
+    });
 }
 exports.getSongs = getSongs;
 function getSongById(id) {
-    return songDao.getSongById(id);
+    return __awaiter(this, void 0, void 0, function* () {
+        const dbSong = yield songDao.getSongById(id);
+        if (!dbSong) {
+            // TODO: Instead of generic Error, return bad request
+            throw new Error(`No song found with id ${id}`);
+        }
+        return dbSong;
+    });
 }
 exports.getSongById = getSongById;
+function getSongFilenameById(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const song = yield getSongById(id); // Throws error if song doesn't exist
+        return song.filename;
+    });
+}
+exports.getSongFilenameById = getSongFilenameById;
 // TODO: Accept parts of a song, rather than whole song
 function create(songCreationParams) {
     return Object.assign(Object.assign({}, songCreationParams), { id: utils_1.generateUniqueId() });

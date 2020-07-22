@@ -112,6 +112,38 @@
 					}
 				]
 			}
+		},
+		"/songs/{songId}/stream": {
+			"get": {
+				"operationId": "StreamSongById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string",
+									"format": "byte"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Songs"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "songId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
 		}
 	},
 	"servers": [

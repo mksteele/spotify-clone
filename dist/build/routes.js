@@ -61,6 +61,23 @@ function RegisterRoutes(app) {
         promiseHandler(controller, promise, response, next);
     });
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    app.get('/songs/:songId/stream', function (request, response, next) {
+        const args = {
+            songId: { "in": "path", "name": "songId", "required": true, "dataType": "string" },
+        };
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        let validatedArgs = [];
+        try {
+            validatedArgs = getValidatedArgs(args, request, response);
+        }
+        catch (err) {
+            return next(err);
+        }
+        const controller = new songs_controller_1.SongController();
+        const promise = controller.streamSongById.apply(controller, validatedArgs);
+        promiseHandler(controller, promise, response, next);
+    });
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     function isController(object) {

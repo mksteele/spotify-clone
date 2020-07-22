@@ -35,8 +35,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SongController = void 0;
+const fs = __importStar(require("fs"));
 const tsoa_1 = require("tsoa");
-const songService = __importStar(require("../../domain/services/songs-service"));
+const songService = __importStar(require("../../domain/services/song"));
 let SongController = class SongController extends tsoa_1.Controller {
     listSongs() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -45,8 +46,15 @@ let SongController = class SongController extends tsoa_1.Controller {
     }
     listSongById(songId) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("calling getSongById");
             return songService.getSongById(songId);
+        });
+    }
+    streamSongById(songId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            // TODO Probably better to move this into its own file service?
+            const filename = yield songService.getSongFilenameById(songId);
+            this.setHeader("Content-Type", "audio/mpeg");
+            return fs.createReadStream(filename);
         });
     }
 };
@@ -58,6 +66,10 @@ __decorate([
     tsoa_1.Get("/{songId}"),
     tsoa_1.Tags("Songs")
 ], SongController.prototype, "listSongById", null);
+__decorate([
+    tsoa_1.Get("/{songId}/stream"),
+    tsoa_1.Tags("Songs")
+], SongController.prototype, "streamSongById", null);
 SongController = __decorate([
     tsoa_1.Route("songs")
 ], SongController);
