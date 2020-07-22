@@ -1,4 +1,3 @@
-// src/app.ts
 import express from "express";
 import bodyParser from "body-parser";
 import { RegisterRoutes } from "../build/routes";

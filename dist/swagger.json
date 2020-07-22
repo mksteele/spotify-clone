@@ -1,0 +1,107 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"IWidget": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"label": {
+						"type": "string"
+					},
+					"color": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"label",
+					"color"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "spotify-clone",
+		"version": "1.0.0",
+		"description": "A REST API to service a digital music library clone",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/songs": {
+			"get": {
+				"operationId": "ListSongs",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IWidget"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Widgets"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/songs/{widgetId}": {
+			"get": {
+				"operationId": "GetWidget",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IWidget"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Widgets"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "widgetId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
