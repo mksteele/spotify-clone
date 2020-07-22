@@ -10,3 +10,9 @@ $ node --version
 
 v12.17.0
 
+Expected .env
+# Set to production when deploying to production
+NODE_ENV=development
+
+# Node.js server configuration
+SERVER_PORT=8080
